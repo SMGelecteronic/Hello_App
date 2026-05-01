@@ -1,0 +1,34 @@
+name: Build APK
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Install buildozer
+      run: |
+        pip install buildozer
+        sudo apt update
+        sudo apt install -y git zip unzip openjdk-17-jdk
+        
+    - name: Build with buildozer
+      run: buildozer android debug
+      
+    - name: Upload APK
+      uses: actions/upload-artifact@v3
+      with:
+        name: my-app
+        path: bin/*.apk
