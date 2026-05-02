@@ -1,29 +1,22 @@
 [app]
-
-# (str) Title of your application
-title = Hello App
-
-# (str) Package name
-package.name = helloapp
-
-# (str) Package domain (needed for android/ios packaging)
+title = My First App
+package.name = myapp
 package.domain = org.example
 
-# (str) Source code where the main.py live
 source.dir = .
+source.include_exts = py,png,jpg,kv,atlas
 
-# (list) Application requirements
+version = 0.1
 requirements = python3,kivy
 
-# (str) Supported orientation (one of landscape, sensorLandscape, portrait or all)
-orientation = portrait
+# Android مشخصات
+android.permissions = INTERNET
+android.api = 33
+android.minapi = 21
+android.ndk = 25b
 
-#
-# Android specific
-#
+# خروجی
+android.release_artifact = apk
 
-# (bool) If True, then automatically accept SDK license agreements
-android.accept_sdk_license = True
-
-# (str) The Android arch to build for
-android.arch = armeabi-v7a
+[buildozer]
+log_level = 2
